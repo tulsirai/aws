@@ -271,7 +271,7 @@ You can retrieve all the orders by using the following payload.
    Load Test Resust: Run 1 with defaul memory of 128 MB in `order-microservice`
    ![Test 1 ](assets/loadtest-result1.png)
 
-   Once the 1st Load Test completes, observe statistics such number of requests, Avg. response time. 
+   Once the 1st Load Test completes, observe statistics such as number of requests, Avg. response time. 
    Then add more memory in `order-microservice` to 512 MB and rerun the test with the same parameters as in the 1st run.
 
     ![Lambda Configuration ](assets/lambda-config.png)
@@ -282,7 +282,7 @@ You can retrieve all the orders by using the following payload.
    Load Test Resust: Run 2 with defaul memory of 528 MB in `order-microservice`
    ![Test 1 ](assets/loadtest-result2.png)
 
-   Once the 2nd Load Test completes, observe statistics such number of requests, Avg. response time and compare with the 1st run. 
+   Once the 2nd Load Test completes, observe statistics such as number of requests, Avg. response time and compare with the 1st run. 
 
    By increasing Lambda's memory allocation from 128 MB to 512 MB, the average response time improved drastically, processing more requests in less time without any errors. This demonstrates how fine-tuning resources can enhance scalability and performance for serverless workloads.
 
