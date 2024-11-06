@@ -68,40 +68,44 @@ A serverless architecture is chosen here to achieve scalability, cost-efficiency
 
 ---
 ## Setup
-###1. Create an IAM Role.
+### 1. Create an IAM Role.
    This role provides the Lambda i.e. Order Proecssing Microservice permission to perform operations on AWS Services such as DynamoDB i.e. Order Database and CloudWatch.
-   Go to IAM in the AWS Console, Click `Policies` on the left hand panel, then `Create policy` button on the top right hand corner. In the Specify permissions screen, click on `JSON` next to `Visual` button on the top righ hand corner. The `Policy editor` opens up, copy and paste the following policies. Click `Next` button and give it name as `orderservcie-dynamodb-policy` and click `Create policy`.
+   Go to IAM in the AWS Console, Click `Policies` on the left hand panel, then `Create policy` button on the top right hand corner. In the Specify permissions screen, click on `JSON` next to `Visual`       
+   button on the top righ hand corner. The `Policy editor` opens up, copy and paste the following policies. Click `Next` button and give it name as `orderservcie-dynamodb-policy` and click `Create policy`.
 
-  Once the `orderservcie-dynamodb-policy` is created, lets create a role by clicking `Role` on the left hand  and click `Create role` on the top right hand corner. In the `Select trusted entity` page, select `AWS service`, choose `lambda` under the `Use case` and click `Next`. In the `Add permission`, type `orderservcie-dynamodb-policy` in the search box, the policy you created will pop up, select it by checking the box and click `Next`. In the next page, give it role name `orderservice-dynamodb-role` and click `Create role`. If you click `Roles` and  type `orderservcie` in the search box, you should see your `orderservice-dynamodb-role`.
+  Once the `orderservcie-dynamodb-policy` is created, lets create a role by clicking `Role` on the left hand  and click `Create role` on the top right hand corner. In the `Select trusted entity` page, 
+  select `AWS service`, choose `lambda` under the `Use case` and click `Next`. In the `Add permission`, type `orderservcie-dynamodb-policy` in the search box, the policy you created will pop up, select it 
+  by checking the box and click `Next`. In the next page, give it role name `orderservice-dynamodb-role` and click `Create role`. If you click `Roles` and  type `orderservcie` in the search box, you should 
+  see your `orderservice-dynamodb-role`.
    ```json
-   {
-      "Version": "2012-10-17",
-      "Statement": [
       {
-        "Sid": "Stmt1428341300017",
-        "Action": [
-          "dynamodb:DeleteItem",
-          "dynamodb:GetItem",
-          "dynamodb:PutItem",
-          "dynamodb:Query",
-          "dynamodb:Scan",
-          "dynamodb:UpdateItem"
-        ],
-        "Effect": "Allow",
-        "Resource": "*"
-      },
-      {
-        "Sid": "",
-        "Resource": "*",
-        "Action": [
-          "logs:CreateLogGroup",
-          "logs:CreateLogStream",
-          "logs:PutLogEvents"
-        ],
-        "Effect": "Allow"
+         "Version": "2012-10-17",
+         "Statement": [
+         {
+           "Sid": "Stmt1428341300017",
+           "Action": [
+             "dynamodb:DeleteItem",
+             "dynamodb:GetItem",
+             "dynamodb:PutItem",
+             "dynamodb:Query",
+             "dynamodb:Scan",
+             "dynamodb:UpdateItem"
+           ],
+           "Effect": "Allow",
+           "Resource": "*"
+         },
+         {
+           "Sid": "",
+           "Resource": "*",
+           "Action": [
+             "logs:CreateLogGroup",
+             "logs:CreateLogStream",
+             "logs:PutLogEvents"
+           ],
+           "Effect": "Allow"
+         }
+         ]
       }
-      ]
-   }
    ```
 
 
