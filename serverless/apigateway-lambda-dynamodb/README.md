@@ -1,7 +1,7 @@
 # Integrating API Gateway, Lambda and DynamoDB
 
 ## Architecture Diagram
-![Architecture Diagram](image.png)
+![Architecture Diagram](architecture.png)
 
 ## What is Serverless?
 Serverless is a cloud computing execution model where the cloud provider automatically manages the infrastructure, allowing developers to focus solely on code. In a serverless architecture, resources are dynamically allocated as needed, and there is no need to provision or manage servers. This model enhances scalability, reduces operational overhead, and helps lower costs, as you only pay for the exact resources used during execution.
@@ -40,7 +40,7 @@ A serverless architecture is chosen here to achieve scalability, cost-efficiency
       ```json
       {
           "operation": "create",
-          "tableName": "lambda-apigateway",
+          "tableName": "order-microservice-db",
           "payload": {
               "Item": {
                   "id": "1234ABCG",
@@ -56,7 +56,7 @@ A serverless architecture is chosen here to achieve scalability, cost-efficiency
       ```json
       {
           "operation": "list",
-          "tableName": "lambda-apigateway",
+          "tableName": "order-microservice-db",
           "payload": {}
       }
       
@@ -107,6 +107,9 @@ A serverless architecture is chosen here to achieve scalability, cost-efficiency
          ]
       }
    ```
+### 2. Create DynamoDB i.e. Order database `order-microservice-db`
+   Go to AWS DynamoDB console, click either `Dashboard` or `Tables` and `Create table`. In the `Create table` page, give it a name as `order-microservice-db` and partition key as `id` of type `String` as shwon in the screen then click `Create table` button.
+   ![DynamoDB Diagram](dynamodb.png)
 
 
 
