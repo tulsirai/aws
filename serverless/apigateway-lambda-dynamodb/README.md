@@ -122,7 +122,7 @@ A serverless architecture is chosen here to achieve scalability, cost-efficiency
 
    Replace the defaut lambda code with the following code copying and pasting it in the code editior. Once you replace the default code with the codes below, click `Deploy` button next to the code editor on the left side.
 
-   ```json
+   ```python
       from __future__ import print_function
       import boto3
       import json
