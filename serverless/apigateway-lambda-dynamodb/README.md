@@ -212,5 +212,14 @@ And type the reource name as `order` and click `Create resource` button.
 In the Resource page, expand the resource, select the resource `/order` and click on the `Create method` button on the right.
 ![Method  Diagram](method.png)
 
-Configure the Method details as shown below. The method of this API will be `POST` which will call the `order-microservice` i.e. Lambda Function. Make sure you have selected the region where you have created the `order-microservice`.
+Configure the Method details as shown below. The method of this API will be `POST` which will call the `order-microservice` i.e. Lambda Function. Make sure you have selected the region where you have created the `order-microservice` and the click `Create method` button.
 ![Method  Details](method-detail.png)
+
+The method `POST` will show up as shown in the screen below. Now `order-service-api` ready with a `/order` resource with `POST` method and we are ready deploy it in an environment such as `dev`, `test`, `prod`. Click `Deploy API` button where you configure the deployment settings as shown below.
+![API Deployment  Details](deploy-api.png)
+
+API Deployment Configuration -
+![Stage API  Details](stage-api.png)
+
+Once the API is deployed, select the `Stages` on the left side and select the `POST` method as shown in the screenshot below. You will see `Invoke URL` and that's the URL its client or consumer application will use to essentially user our `order-microservice`. Now copy that URL and head over to `Postman`, a REST API testing application that you can download for free.
+![API  Endpoint](api-endpoint.png)
