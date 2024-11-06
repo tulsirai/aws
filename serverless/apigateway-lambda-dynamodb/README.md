@@ -53,7 +53,7 @@ The following is a sample request payload for a DynamoDB create item operation:
 ```
 The following is a sample request payload for a DynamoDB read item operation:
 
-```
+```json
 {
     "operation": "list",
     "tableName": "lambda-apigateway",
@@ -62,7 +62,7 @@ The following is a sample request payload for a DynamoDB read item operation:
 
 ```
 
-4. **Amazon DynamoDB (Order Database)**:
+3. **Amazon DynamoDB (Order Database)**:
    - **Description**: Amazon DynamoDB is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability. It is designed to handle large volumes of data and allows flexible schema structures.
    - **Role in Architecture**: The `Order Database` is implemented using DynamoDB, where order data is stored in a fast, reliable, and scalable manner. This ensures that order information is readily available for processing and retrieval.
 
