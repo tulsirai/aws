@@ -26,10 +26,46 @@ A serverless architecture is chosen here to achieve scalability, cost-efficiency
 
    This microservice approach within a serverless architecture enhances agility, reliability, and operational efficiency, aligning with best practices for building resilient, scalable cloud applications.
 
-3. **Amazon DynamoDB (Order Database)**:
+   The Order Processing Microservice will have the following functionalities:
+
+- Create, update, and delete an item.
+- Read an item.
+- Scan an item.
+- Other operations (echo, ping) not related to DynamoDB, that you can use for testing.
+
+The request payload you send in the POST request identifies the DynamoDB operation and provides necessary data. For example:
+
+The following is a sample request payload for a DynamoDB create item operation:
+
+```json
+{
+    "operation": "create",
+    "tableName": "lambda-apigateway",
+    "payload": {
+        "Item": {
+            "id": "1234ABCG",
+            "price": 78.89,
+            "product": "Beautiful Jacket",
+            "order_date": "2024-11-04T10:30:00Z"
+        }
+    }
+}
+```
+The following is a sample request payload for a DynamoDB read item operation:
+
+```
+{
+    "operation": "list",
+    "tableName": "lambda-apigateway",
+    "payload": {}
+}
+
+```
+
+4. **Amazon DynamoDB (Order Database)**:
    - **Description**: Amazon DynamoDB is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability. It is designed to handle large volumes of data and allows flexible schema structures.
    - **Role in Architecture**: The `Order Database` is implemented using DynamoDB, where order data is stored in a fast, reliable, and scalable manner. This ensures that order information is readily available for processing and retrieval.
 
 ---
 
-This serverless architecture allows for a high level of flexibility, cost control, and ease of maintenance. Each service scales automatically, only charging for usage, which is ideal for applications with variable demand like order processing.
+
