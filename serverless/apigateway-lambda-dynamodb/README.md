@@ -111,5 +111,66 @@ A serverless architecture is chosen here to achieve scalability, cost-efficiency
    Go to AWS DynamoDB console, click either `Dashboard` or `Tables` and `Create table`. In the `Create table` page, give it a name as `order-microservice-db` and partition key as `id` of type `String` as shwon in the screen then click `Create table` button.
    ![DynamoDB Diagram](dynamodb.png)
 
+### 3. Create Lambda Function i.e. Order Microservice `order-microservice`
+   Go AWS Lambda Console, `Dashboard` and click `Create function`. 
+   ![Lambda Dashboard Diagram](lambda-dashboard.png)
 
+   In the `Create function` page, select `Author from scratch` and give function name as `order-microservice`. Choose runtime as `Python 12` or the latest version, leave the architecture as default, configure the  `Permission` by selecting the roel you created earlier which is `orderservice-dynamodb-role` and click `Create function`.
+   ![Create Lambda Diagram](create-lambda.png)
+   Once the `order-microservice` is created, the `order-microservice` page will show up as shown below -
+   ![Order-microservice Diagram](order-microservice.png)
+
+   Replace the defaut lambda code with the following code copying and pasting it in the code editior. Once you replace the default code with the codes below, click `Deploy` button next to the code editor on the left side.
+
+   ```json
+      from __future__ import print_function
+      import boto3
+      import json
+      from decimal import Decimal
+
+      print('Loading function')
+
+
+      def convert_floats_to_decimals(obj):
+         if isinstance(obj, list):
+            return [convert_floats_to_decimals(i) for i in obj]
+         elif isinstance(obj, dict):
+            return {k: convert_floats_to_decimals(v) for k, v in obj.items()}
+         elif isinstance(obj, float):
+            return Decimal(str(obj))
+         else:
+            return obj
+
+
+      def lambda_handler(event, context):
+         '''Provide an event that contains the following keys:
+
+            - operation: one of the operations in the operations dict below
+            - tableName: required for operations that interact with DynamoDB
+            - payload: a parameter to pass to the operation being performed
+         '''
+         # Convert any float values in the payload to Decimal
+         event['payload'] = convert_floats_to_decimals(event.get('payload', {}))
+
+         operation = event['operation']
+
+         if 'tableName' in event:
+            dynamo = boto3.resource('dynamodb').Table(event['tableName'])
+
+         operations = {
+            'create': lambda x: dynamo.put_item(**x),
+            'read': lambda x: dynamo.get_item(**x),
+            'update': lambda x: dynamo.update_item(**x),
+            'delete': lambda x: dynamo.delete_item(**x),
+            'list': lambda x: dynamo.scan(**x),
+            'echo': lambda x: x,
+            'ping': lambda x: 'pong'
+         }
+
+         if operation in operations:
+            return operations[operation](event.get('payload'))
+         else:
+            raise ValueError('Unrecognized operation "{}"'.format(operation))
+
+   ```
 
