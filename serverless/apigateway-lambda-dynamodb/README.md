@@ -223,3 +223,22 @@ API Deployment Configuration -
 
 Once the API is deployed, select the `Stages` on the left side and select the `POST` method as shown in the screenshot below. You will see `Invoke URL` and that's the URL its client or consumer application will use to essentially user our `order-microservice`. Now copy that URL and head over to `Postman`, a REST API testing application that you can download for free.
 ![API  Endpoint](api-endpoint.png)
+
+Open your Postman, create a collection in Postman where you can cofigure endpoint calls such as create an order or listing orders.
+Use the following payload for creating an order -
+```json
+   {
+      "operation": "create",
+      "tableName": "order-microservice-db",
+      "payload": {
+         "Item": {
+               "id": "1234ABCG",
+               "price": 78.89,
+               "product":"Beautiful Jacket",
+               "order_date": "2024-11-04T10:30:00Z"
+         }
+      }
+   }
+```
+Once you configure POST order call with the endpoint URL you copied from the API and payload above, click the `Send` button on top right corner. If everything goes well, it will call the `order-service-api` --> `order-microservice` --> `order-service-db` and it will return a standard 200 OK response as shown in the picture below. Just add a few more orders by changing the `id` and other properties such as price, product and the order_date of the order so that we have various in order.
+![Postman  Endpoint](postman-test1.png)
