@@ -120,7 +120,7 @@ A serverless architecture is chosen here to achieve scalability, cost-efficiency
    Once the `order-microservice` is created, the `order-microservice` page will show up as shown below -
    ![Order-microservice Diagram](order-microservice.png)
 
-   Replace the defaut lambda code with the following code copying and pasting it in the code editior. Once you replace the default code with the codes below, click `Deploy` button next to the code editor on the left side.
+   Replace the defaut lambda code with the following code copying and pasting it in the code editior. Once you replace the default code with the codes below, click `Deploy` button next to the code editor on the left side. Everytime you make changes to the code, you must DEPLOY the changes!
 
    ```python
       from __future__ import print_function
@@ -173,4 +173,27 @@ A serverless architecture is chosen here to achieve scalability, cost-efficiency
             raise ValueError('Unrecognized operation "{}"'.format(operation))
 
    ```
+
+Lets test the `order-microservice` we just created. Click on the `Test` button right below the `Deploy` button and `Create new test event` option shows up, click on it to configure test case. 
+![Test Lambda Diagram](test-lambda.png)
+
+
+Configure the test event as shown below. Copy and past the event json below as well and click `Save` button.
+![Test Event Diagram](test-event.png)
+```json
+   {
+      "operation": "echo",
+      "payload": {
+         "somekey1": "somevalue1",
+         "somekey2": "somevalue2"
+      }
+   }
+```
+
+Once the test event is created, click `Test` button right below the `Deploy` button. The select test event drop-down will show up with your test event as shown in the diagram below, click on it. It will execute the test event and the result will show up right underneath the code editor.
+![Test  Diagram](test.png)
+
+Test Result:
+![Test Result  Diagram](result.png)
+
 
