@@ -242,3 +242,14 @@ Use the following payload for creating an order -
 ```
 Once you configure POST order call with the endpoint URL you copied from the API and payload above, click the `Send` button on top right corner. If everything goes well, it will call the `order-service-api` --> `order-microservice` --> `order-service-db` and it will return a standard 200 OK response as shown in the picture below. Just add a few more orders by changing the `id` and other properties such as price, product and the order_date of the order so that we have various in order.
 ![Postman  Endpoint](postman-test1.png)
+
+You can retrieve all the orders by using the following payload.
+```json
+   {
+      "operation": "list",
+      "tableName": "order-microservice-db",
+      "payload": {}
+   }
+```
+
+![Retrieve Orders](retrieve-order.png)
