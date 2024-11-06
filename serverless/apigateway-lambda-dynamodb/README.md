@@ -68,6 +68,8 @@ A serverless architecture is chosen here to achieve scalability, cost-efficiency
 
 ---
 ## Setup
+### Note: Make sure all the AWS resource are created in the same region.
+
 ### 1. Create an IAM Role.
    This role provides the Lambda i.e. Order Proecssing Microservice permission to perform operations on AWS Services such as DynamoDB i.e. Order Database and CloudWatch.
    Go to IAM in the AWS Console, Click `Policies` on the left hand panel, then `Create policy` button on the top right hand corner. In the Specify permissions screen, click on `JSON` next to `Visual`       
