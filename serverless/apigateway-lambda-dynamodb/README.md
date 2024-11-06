@@ -196,4 +196,21 @@ Once the test event is created, click `Test` button right below the `Deploy` but
 Test Result:
 ![Test Result  Diagram](result.png)
 
+### 3. Create API  i.e. Order Service API `order-service-api`
+Go to the AWS API Gateway Console and click on `Create API` and under the REST API click `Build` button.
+![REST API  Diagram](choose-rest-api.png)
 
+Configure the API as shown in the diagram below and click `Create API` button.
+![REST API Configuration  Diagram](API-config.png)
+
+In the Resources page, click `Create resource` button as shown in the below.
+![REST API Resouece  Diagram](api-resource.png)
+
+And type the reource name as `order` and click `Create resource` button.
+![REST API Resouece Detals  Diagram](resource-detail.png)
+
+In the Resource page, expand the resource, select the resource `/order` and click on the `Create method` button on the right.
+![Method  Diagram](method.png)
+
+Configure the Method details as shown below. The method of this API will be `POST` which will call the `order-microservice` i.e. Lambda Function. Make sure you have selected the region where you have created the `order-microservice`.
+![Method  Details](method-detail.png)
