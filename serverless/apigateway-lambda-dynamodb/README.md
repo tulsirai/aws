@@ -19,7 +19,12 @@ A serverless architecture is chosen here to achieve scalability, cost-efficiency
 
 2. **AWS Lambda (Order Processing Service)**:
    - **Description**: AWS Lambda is a serverless compute service that runs code in response to events and automatically manages the compute resources required by that code. It supports a wide variety of programming languages and integrates seamlessly with other AWS services.
-   - **Role in Architecture**: In this setup, Lambda serves as the `Order Processing Service`, which processes incoming orders by executing the business logic in response to API calls from the `Order API`. Lambda functions are triggered only when needed, making it highly cost-effective for on-demand processing.
+   - **Role in Architecture**: In this setup, Lambda functions act as the `Order Processing Service`, designed as a microservice to handle the specific business logic of processing orders. As a microservice, it is independently deployable and scalable, focusing solely on order-related functionality. This approach provides several benefits:
+     - **Single Responsibility**: Lambda only processes orders, making it easier to maintain and evolve.
+     - **Independent Scaling**: It can scale up or down based on order volume without affecting other parts of the application.
+     - **Cost-Effectiveness**: Lambda functions are triggered only when needed, allowing the service to process orders on-demand, which minimizes costs.
+
+   This microservice approach within a serverless architecture enhances agility, reliability, and operational efficiency, aligning with best practices for building resilient, scalable cloud applications.
 
 3. **Amazon DynamoDB (Order Database)**:
    - **Description**: Amazon DynamoDB is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability. It is designed to handle large volumes of data and allows flexible schema structures.
